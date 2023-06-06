@@ -13,7 +13,7 @@ NER classification is done with https://huggingface.co/transformers/ that utiliz
 These models can take up a lot of disk space, so be sure to have enough space available (10 gigs should be enough).
 
 <details>
-    <summary>See it in action</summary>
+    <summary>See it in action (click to expand)</summary>
     <img src="./screen.png">
 </details>
 
