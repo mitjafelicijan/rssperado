@@ -33,7 +33,7 @@ Each feed gets exported as JSON file where the `md5(feed-url)` is the name of th
 - Enables NER classification
 - Detects language of the story
 - Allows extraction of content from each story
-- Destinguishes between articles and podcasts
+- Distinguishes between articles and podcasts
 - Podcasts have accompanying url to audio file
 
 ## Installation
