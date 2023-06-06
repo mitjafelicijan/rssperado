@@ -1,6 +1,6 @@
 # rssperado
 
-![Despedado](./despedado.gif)
+![Despedado](./media/despedado.gif)
 
 **This project is under active development and still considered work in progress. It is not yet ready for production use. Use at your own risk.**
 
@@ -20,7 +20,7 @@ Each feed gets exported as JSON file where the `md5(feed-url)` is the name of th
 
 <details>
     <summary>See it in action (click to expand)</summary>
-    <img src="./screen.png">
+    <img src="./media/screen.png">
 </details>
 
 ## Features
