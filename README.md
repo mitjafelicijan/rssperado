@@ -141,6 +141,7 @@ https://www.spiegel.de/index.rss
     }
   ],
   "image_filename": "efb152d38b66ec229e8d654e0235181b.jpg",
+  "image_url": "https://cdn.prod.www.spiegel.de/images/61ebb31e-d8b6-4c8a-8be0-6150d6a98963_w520_r2.08_fpx49.5_fpy49.98.jpg",
   "podcast_url": null,
   "source": "www.spiegel.de",
   "type": "story",
