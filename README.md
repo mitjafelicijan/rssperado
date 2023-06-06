@@ -10,7 +10,7 @@ Feeds are parsed in linear order and each story is parsed in parallel, ensuring 
 
 Translations are done with argostranslate that utilizes https://opennmt.net/ for translation. The translation model is downloaded on the first run and cached for future use. The translation model is not included in the repository due to its size.
 
-NER classification is done with https://huggingface.co/transformers/ that utilizes dbmdz/bert-large-cased-finetuned-conll03-english model. The model is downloaded on the first run and cached for future use. The model is not included in the repository due to its size. This feature requires translation to be enabled, and it always takes the English translation as input.
+NER classification is done with https://huggingface.co/transformers/ that utilizes `dbmdz/bert-large-cased-finetuned-conll03-english` model. The model is downloaded on the first run and cached for future use. The model is not included in the repository due to its size. This feature requires translation to be enabled, and it always takes the English translation as input.
 
 Extract content goes to the actual page and tries to extract the content from it. It also uses NLP to summarize the full content to a few sentences.
 
