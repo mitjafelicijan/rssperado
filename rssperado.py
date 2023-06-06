@@ -230,13 +230,16 @@ def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries:
         if entry_key.find("itunes") == 0:
             story["type"] = "podcast"
 
-    print("[{}/{}] {} :: {} > {}".format(
-        idx+1,
-        num_of_unprocessed_feed_entries,
-        story["type"],
-        story["source"],
-        entry["title"][:50],
-    ))
+    try:
+        print("[{}/{}] {} :: {} > {}".format(
+            idx+1,
+            num_of_unprocessed_feed_entries,
+            story["type"],
+            story["source"],
+            entry["title"][:50],
+        ))
+    except Exception as e:
+        pass
 
     # If the story is a podcast try to extract podcast url.
     if story["type"] == "podcast":
