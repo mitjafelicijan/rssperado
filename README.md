@@ -12,6 +12,8 @@ Translations are done with argostranslate that utilizes https://opennmt.net/ for
 
 NER classification is done with https://huggingface.co/transformers/ that utilizes `dbmdz/bert-large-cased-finetuned-conll03-english` model. The model is downloaded on the first run and cached for future use. The model is not included in the repository due to its size.
 
+Extract content goes to the actual page and tries to extract the content from it. It also uses NLP to summarize the full content to a few sentences.
+
 These models can take up a lot of disk space, so be sure to have enough space available (10 gigs on a VM should be enough).
 
 Each feed gets exported as JSON file where the `md5(feed-url)` is the name of the file so it is predictable and easy to integrate into your own code. Example of such a filename would be `26a13287efe864d840c98b840f16465d.json`.
