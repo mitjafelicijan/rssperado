@@ -32,7 +32,8 @@ $ pip3 install torch torchvision torchaudio --index-url https://download.pytorch
 
 ## Usage
 
-```
+```sh
+$ source .venv/bin/activate
 $ python3 rssperado.py --input urls.txt --resize --image-width 200 --image-height 200 --ner --translate
 ```
 
