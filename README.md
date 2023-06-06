@@ -123,7 +123,7 @@ https://www.spiegel.de/index.rss
   },
   "published": {
     "ago": "7 hours ago",
-    "origin": "Tue, 6 Jun 2023 02:36:08 +0200"
+    "dt": "Tue, 6 Jun 2023 02:36:08 +0200"
   },
   "ner": [
     {

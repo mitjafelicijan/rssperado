@@ -169,7 +169,7 @@ def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries:
         },
         "published": {
             "ago": None,
-            "origin": None,
+            "dt": None,
         },
         "ner": None,
         "image_filename": None,
@@ -216,7 +216,7 @@ def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries:
     entry_published = entry["published"] if "published" in entry else None
     if entry_published:
         try:
-            story["published"]["origin"] = str(entry_published)
+            story["published"]["dt"] = str(entry_published)
             story["published"]["ago"] = str(timeago.format(
                 dateutil_parse(entry_published).replace(tzinfo=None),
                 datetime.now().replace(tzinfo=None)))
