@@ -10,6 +10,8 @@ Translations are done with argostranslate that utilizes https://opennmt.net/ for
 
 NER classification is done with https://huggingface.co/transformers/ that utilizes `dbmdz/bert-large-cased-finetuned-conll03-english` model. The model is downloaded on the first run and cached for future use. The model is not included in the repository due to its size.
 
+These models can take up a lot of disk space, so be sure to have enough space available (10 gigs should be enough).
+
 ## Features
 
 - Fetchs RSS feeds in parallel
