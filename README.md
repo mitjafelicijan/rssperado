@@ -30,7 +30,6 @@ Each feed gets exported as JSON file where the `md5(feed-url)` is the name of th
 - Translate each story to English
 - Enables NER classification
 - Detects language of the story
-- If an image was already downloaded, it will not be downloaded again
 
 ## Installation
 

@@ -82,7 +82,7 @@ def extract_podcast_url_from_unprocessed_feed_entry(entry: object) -> str:
     return None
 
 
-def extract_image_url_from_unprocessed_feed_entry(entry) -> str:
+def extract_image_url_from_unprocessed_feed_entry(entry: object) -> str:
     """ Extracts image url from the unprocessed feed entry. """
 
     # Try getting image from first element in `media_thumbnail`.
@@ -126,32 +126,30 @@ def extract_image_url_from_unprocessed_feed_entry(entry) -> str:
     return None
 
 
-def fetch_and_resize_image(image_url, desired_image_filename) -> bool:
+def fetch_and_resize_image(image_url: str, desired_image_filename: str) -> bool:
     """ Fetches image from remote URL and resizes and then saves locally. """
-    if not os.path.exists("{}/images/{}".format(ARGS.output_dir, desired_image_filename)):
-        try:
-            req = urllib.request.Request(image_url, headers={'User-Agent': 'Mozilla/5.0'})
-            path = io.BytesIO(urllib.request.urlopen(req, timeout=5).read())
+    try:
+        req = urllib.request.Request(image_url, headers={'User-Agent': 'Mozilla/5.0'})
+        body = io.BytesIO(urllib.request.urlopen(req, timeout=5).read())
 
-            with Image.open(path) as im:
-                resized = ImageOps.contain(im, (ARGS.image_width, ARGS.image_height))
-                resized.save("{}/images/{}".format(
-                    ARGS.output_dir,
-                    desired_image_filename),
-                    quality=ARGS.image_quality)
+        with Image.open(body) as im:
+            resized = ImageOps.contain(im, (ARGS.image_width, ARGS.image_height))
+            resized.save("{}/images/{}".format(
+                ARGS.output_dir,
+                desired_image_filename),
+                quality=ARGS.image_quality)
 
-            # Clear from memory.
-            del (im)
-            del (req)
-            del (path)
-            gc.collect()
+        # Clear from memory.
+        del (im)
+        del (req)
+        del (body)
+        gc.collect()
 
-            return True
-        except Exception as e:
-            if ARGS.verbose:
-                print("  > resize failed for > {} > {}".format(image_url, e))
-            return False
-    return True
+        return True
+    except Exception as e:
+        if ARGS.verbose:
+            print("  > resize failed for > {} > {}".format(image_url, e))
+        return False
 
 
 def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries: int) -> object:
@@ -173,6 +171,7 @@ def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries:
         },
         "ner": None,
         "image_filename": None,
+        "image_url": None,
         "podcast_url": None,
         "source": None,
         "type": "story",
@@ -248,18 +247,19 @@ def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries:
             story["podcast_url"] = podcast_url
 
     # If the story is not podcast try to find image associated with this story.
-    if story["type"] == "story":
-        image_url = extract_image_url_from_unprocessed_feed_entry(entry)
+    image_url = extract_image_url_from_unprocessed_feed_entry(entry)
+    if image_url:
+        story["image_url"] = image_url
 
-        # Fetch and resize the image and store them locally.
-        if image_url and ARGS.fetch_images:
-            desired_image_filename = "{}.jpg".format(story["guid"])
+    # Fetch and resize the image and store them locally.
+    if image_url and ARGS.fetch_images:
+        desired_image_filename = "{}.jpg".format(story["guid"])
 
-            success = fetch_and_resize_image(image_url, desired_image_filename)
-            if success:
-                story["image_filename"] = desired_image_filename
-            else:
-                story["image_filename"] = None
+        success = fetch_and_resize_image(image_url, desired_image_filename)
+        if success:
+            story["image_filename"] = desired_image_filename
+        else:
+            story["image_filename"] = None
 
     # Detects the language of the story.
     if story["title"]["origin"] and story["summary"]["origin"]:
@@ -322,7 +322,7 @@ if __name__ == "__main__":
     parser.add_argument("--max-entries", help="specify max feed entries to parse (default: 50)", type=int, default=50)
 
     parser.add_argument("--fetch-images", help="fetches images from feed", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--og-images", help="fetched images from OG meta tags as fallback", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--og-images", help="fetched images from OG meta tags as fallback", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--resize", help="resizes images to specific dimensions", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--image-width", help="specify resized image width (default: 800)", type=int, default=800)
     parser.add_argument("--image-height", help="specify resized image height (default: 600)", type=int, default=600)
@@ -342,8 +342,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Create output directory and image directory if it doesn't exist.
-    if not os.path.exists(args.output_dir):
-        os.makedirs(args.output_dir, exist_ok=True)
+    if not os.path.exists("{}/{}".format(args.output_dir, "images")):
         os.makedirs("{}/{}".format(args.output_dir, "images"), exist_ok=True)
 
     # Print all the arguments with space between them.
