@@ -12,6 +12,8 @@ NER classification is done with https://huggingface.co/transformers/ that utiliz
 
 These models can take up a lot of disk space, so be sure to have enough space available (10 gigs should be enough).
 
+Each feed gets exported as JSON file where the `md5(feed-url)` is the name of the file so it is predictable and easy to integrate into your own code. Example of such a filename would be `26a13287efe864d840c98b840f16465d.json`.
+
 <details>
     <summary>See it in action (click to expand)</summary>
     <img src="./screen.png">
