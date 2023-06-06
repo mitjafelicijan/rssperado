@@ -6,7 +6,7 @@
 
 The RSS parser is a command-line utility that simplifies the process of parsing RSS feeds, enriching the extracted data, exporting it to JSON files, enabling content classification, and providing English translation.
 
-Feeds are parsed in linear order and eacy store is parsed in parallel ensuring the best possible performance. Be sure your machine has enough RAM to handle the load (2 gigs should be enough, but beware of it).
+Feeds are parsed in linear order and eacy story is parsed in parallel ensuring the best possible performance. Be sure your machine has enough RAM to handle the load (2 gigs should be enough, but beware of it).
 
 Translations are done with argostranslate that utilizes https://opennmt.net/ for translation. The translation model are downloaded on the first run and cached for future use. The translation model is not included in the repository due to its size.
 
