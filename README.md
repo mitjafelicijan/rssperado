@@ -6,17 +6,17 @@
 
 The RSS parser is a command-line utility that simplifies the process of parsing RSS feeds, enriching the extracted data, exporting it to JSON files, enabling content classification, and providing English translation.
 
-Feeds are parsed in linear order and eacy story is parsed in parallel ensuring the best possible performance. Be sure your machine has enough RAM to handle the load (2 gigs should be enough, but beware of it).
+Feeds are parsed in linear order and each story is parsed in parallel, ensuring the best possible performance. Be sure your machine has enough RAM to handle the load (2 gigs should be enough, but beware of it).
 
-Translations are done with argostranslate that utilizes https://opennmt.net/ for translation. The translation model are downloaded on the first run and cached for future use. The translation model is not included in the repository due to its size.
+Translations are done with argostranslate that utilizes https://opennmt.net/ for translation. The translation model is downloaded on the first run and cached for future use. The translation model is not included in the repository due to its size.
 
-NER classification is done with https://huggingface.co/transformers/ that utilizes `dbmdz/bert-large-cased-finetuned-conll03-english` model. The model is downloaded on the first run and cached for future use. The model is not included in the repository due to its size. This feature requires translation to be enabled and it always takes the English translation as input.
+NER classification is done with https://huggingface.co/transformers/ that utilizes dbmdz/bert-large-cased-finetuned-conll03-english model. The model is downloaded on the first run and cached for future use. The model is not included in the repository due to its size. This feature requires translation to be enabled, and it always takes the English translation as input.
 
 Extract content goes to the actual page and tries to extract the content from it. It also uses NLP to summarize the full content to a few sentences.
 
 These models can take up a lot of disk space, so be sure to have enough space available (10 gigs on a VM should be enough).
 
-Each feed gets exported as JSON file where the `md5(feed-url)` is the name of the file so it is predictable and easy to integrate into your own code. Example of such a filename would be `26a13287efe864d840c98b840f16465d.json`.
+Each feed gets exported as JSON files where the `md5(feed-url)` is the name of the file, so it is predictable and easy to integrate into your own code. An example of such a filename would be `26a13287efe864d840c98b840f16465d.json`.
 
 <details>
     <summary>See it in action (click to expand)</summary>
@@ -25,7 +25,7 @@ Each feed gets exported as JSON file where the `md5(feed-url)` is the name of th
 
 ## Features
 
-- Fetchs RSS feeds in parallel
+- Fetches RSS feeds in parallel
 - Fetches images from feed
 - Fetches images from OG meta tags as fallback
 - Resizes images to specific dimensions
@@ -34,7 +34,7 @@ Each feed gets exported as JSON file where the `md5(feed-url)` is the name of th
 - Detects language of the story
 - Allows extraction of content from each story
 - Distinguishes between articles and podcasts
-- Podcasts have accompanying url to audio file
+- Podcasts have accompanying URL to audio file
 
 ## Installation
 
