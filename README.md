@@ -112,7 +112,7 @@ https://www.spiegel.de/index.rss
 ```json
 [{
   "guid": "efb152d38b66ec229e8d654e0235181b",
-  "link": "https://www.spiegel.de/ausland/flugzeugabsturz-bei-washington-d-c-pilot-sass-zusammengesackt-im-cockpit",
+  "link": "https://www.spiegel.de/ausland/flugzeugabsturz-bei-washington-d-c-pilot-sass-zusammengesackt-im-cockpit-a-b5f70396-b3f4-48b1-b6ca-f2063fb02ed0",
   "title": {
     "origin": "Flugzeugabsturz bei Washington D.C.: Pilot saß zusammengesackt im Cockpit",
     "en": "Aircraft crash at Washington D.C.: Pilot sat down in cockpit"
