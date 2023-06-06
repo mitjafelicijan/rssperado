@@ -135,7 +135,13 @@ def fetch_and_resize_image(image_url: str, desired_image_filename: str) -> bool:
         body = io.BytesIO(urllib.request.urlopen(req, timeout=5).read())
 
         with Image.open(body) as im:
-            resized = ImageOps.contain(im, (ARGS.image_width, ARGS.image_height))
+            if ARGS.image_fit:
+                resized = ImageOps.fit(im, (ARGS.image_width, ARGS.image_height))
+            elif ARGS.image_contain:
+                resized = ImageOps.contain(im, (ARGS.image_width, ARGS.image_height))
+            else:
+                resized = im.resize((ARGS.image_width, ARGS.image_height))
+
             resized.save("{}/images/{}".format(
                 ARGS.output_dir,
                 desired_image_filename),
@@ -349,6 +355,8 @@ if __name__ == "__main__":
     parser.add_argument("--image-width", help="specify resized image width (default: 800)", type=int, default=800)
     parser.add_argument("--image-height", help="specify resized image height (default: 600)", type=int, default=600)
     parser.add_argument("--image-quality", help="specify resized image quality (default: 90)", type=int, default=90)
+    parser.add_argument("--image-fit", help="fits an image to the canvas (default)", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--image-contain", help="contains an image to the canvas (may result is diffent dimensions)", action=argparse.BooleanOptionalAction, default=True)
 
     parser.add_argument("--extract-content", help="extracts page's actual content", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--translate", help="translate each story to English", action=argparse.BooleanOptionalAction, default=False)

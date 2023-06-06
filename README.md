@@ -35,6 +35,7 @@ Each feed gets exported as JSON files where the `md5(feed-url)` is the name of t
 - Allows extraction of content from each story
 - Distinguishes between articles and podcasts
 - Podcasts have accompanying URL to audio file
+- Images can be resized to fit or contain
 
 ## Installation
 
@@ -78,10 +79,10 @@ $ python3 rssperado.py --help
 usage: rssperado.py [-h] --input-feeds INPUT_FEEDS [--output-dir OUTPUT_DIR] [--max-entries MAX_ENTRIES]
                     [--fetch-images | --no-fetch-images] [--og-images | --no-og-images] [--resize | --no-resize]
                     [--image-width IMAGE_WIDTH] [--image-height IMAGE_HEIGHT] [--image-quality IMAGE_QUALITY]
+                    [--image-fit | --no-image-fit] [--image-contain | --no-image-contain]
                     [--extract-content | --no-extract-content] [--translate | --no-translate] [--ner | --no-ner]
                     [--verbose | --no-verbose] [--version]
 ```
-
 
 ### Available options
 
@@ -97,6 +98,8 @@ usage: rssperado.py [-h] --input-feeds INPUT_FEEDS [--output-dir OUTPUT_DIR] [--
 | --image-width IMAGE_WIDTH               | Specify resized image width (default: 800)      |
 | --image-height IMAGE_HEIGHT             | Specify resized image height (default: 600)     |
 | --image-quality IMAGE_QUALITY           | Specify resized image quality (default: 90)     |
+| --image-fit, --no-image-fit             | Fit image to canvas (default)                   |
+| --image-contain, --no-image-contain     | Contain image in canvas                         |
 | --extract-content, --no-extract-content | Extracts content from each story                |
 | --translate, --no-translate             | Translate each story to English                 |
 | --ner, --no-ner                         | Enables NER classification                      |
