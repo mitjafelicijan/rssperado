@@ -1,0 +1,153 @@
+# rssperado
+
+![](./despedado.gif)
+
+The RSS parser is a command-line utility that simplifies the process of parsing RSS feeds, enriching the extracted data, exporting it to JSON files, enabling content classification, and providing English translation.
+
+## Installation
+
+Requirements:
+- Python 3.8+
+- pip
+- virtualenv
+
+```sh
+[sudo] apt install build-essential python3 python3-venv python3-pip
+```
+
+And now the actual installation:
+
+```sh
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+$ pip install -r requirements.txt
+```
+
+If you have issues installing PyTorch, please refer to the [official installation guide](https://pytorch.org/get-started/locally/). For CPU only installation, use the following command:
+
+```sh
+$ source .venv/bin/activate
+$ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+```
+
+## Usage
+
+```
+$ python3 rssperado.py --input urls.txt --resize --image-width 200 --image-height 200 --ner --translate
+```
+
+### Help command output
+
+```sh
+$ source .venv/bin/activate
+$ python3 rssperado.py --help
+
+usage: rssperado.py [-h] --input-feeds INPUT_FEEDS [--output-dir OUTPUT_DIR] [--max-entries MAX_ENTRIES]
+                    [--fetch-images | --no-fetch-images] [--og-images | --no-og-images] [--resize | --no-resize]
+                    [--image-width IMAGE_WIDTH] [--image-height IMAGE_HEIGHT] [--image-quality IMAGE_QUALITY]
+                    [--translate | --no-translate] [--ner | --no-ner] [--verbose | --no-verbose] [--version]
+```
+
+
+### Available options
+
+| Option                            | Description                                     |
+| --------------------------------- | ----------------------------------------------- |
+| -h, --help                        | Show this help message and exit                 |
+| --input-feeds INPUT_FEEDS         | Specify input file with the list of RSS feeds   |
+| --output-dir OUTPUT_DIR           | Specify output directory (default: ./output)    |
+| --max-entries MAX_ENTRIES         | Specify max feed entries to parse (default: 50) |
+| --fetch-images, --no-fetch-images | Fetches images from feed                        |
+| --og-images, --no-og-images       | Fetches images from OG meta tags as fallback    |
+| --resize, --no-resize             | Resizes images to specific dimensions           |
+| --image-width IMAGE_WIDTH         | Specify resized image width (default: 800)      |
+| --image-height IMAGE_HEIGHT       | Specify resized image height (default: 600)     |
+| --image-quality IMAGE_QUALITY     | Specify resized image quality (default: 90)     |
+| --translate, --no-translate       | Translate each story to English                 |
+| --ner, --no-ner                   | Enables NER classification                      |
+| --verbose, --no-verbose           | Make the operation more talkative               |
+| --version                         | Show program's version number and exit          |
+
+
+### Example input file
+
+Each line in the input file represents a single RSS feed URL.
+
+```text
+https://newatlas.com/index.rss
+https://mitjafelicijan.com/feed.rss
+https://www.spiegel.de/index.rss
+```
+
+### Example output file
+
+```json
+[{
+  "guid": "efb152d38b66ec229e8d654e0235181b",
+  "link": "https://www.spiegel.de/ausland/flugzeugabsturz-bei-washington-d-c-pilot-sass-zusammengesackt-im-cockpit",
+  "title": {
+    "origin": "Flugzeugabsturz bei Washington D.C.: Pilot saß zusammengesackt im Cockpit",
+    "en": "Aircraft crash at Washington D.C.: Pilot sat down in cockpit"
+  },
+  "summary": {
+    "origin": "Neue Details im rätselhaften Fall des abgestürzten Kleinflugzeugs nahe der US-Hauptstadt: So war der Pilot der Cessna vor dem Crash offenbar bewusstlos – möglicherweise wegen eines Sauerstoffproblems.",
+    "en": "New details in the mysterious case of the crashed small aircraft near the US capital: Thus, the pilot of the Cessna before the crash was apparently unconscious – possibly due to an oxygen problem."
+  },
+  "published": {
+    "ago": "7 hours ago",
+    "origin": "Tue, 6 Jun 2023 02:36:08 +0200"
+  },
+  "ner": [
+    {
+      "entity_group": "LOC",
+      "score": "0.51140416",
+      "word": "Hauptstadt",
+      "start": 152,
+      "end": 162
+    }, {
+      "entity_group": "ORG",
+      "score": "0.7654832",
+      "word": "Cessna",
+      "start": 185,
+      "end": 191
+    }
+  ],
+  "image_filename": "efb152d38b66ec229e8d654e0235181b.jpg",
+  "podcast_url": null,
+  "source": "www.spiegel.de",
+  "type": "story",
+  "origin_language": "de"
+}]
+```
+
+## Available translations
+
+- Arabic → English
+- Azerbaijani → English
+- Catalan → English
+- Chinese → English
+- Czech → English
+- Danish → English
+- Dutch → English
+- Esperanto → English
+- Finnish → English
+- French → English
+- German → English
+- Greek → English
+- Hebrew → English
+- Hindi → English
+- Hungarian → English
+- Indonesian → English
+- Irish → English
+- Italian → English
+- Japanese → English
+- Korean → English
+- Persian → English
+- Polish → English
+- Portuguese → English
+- Russian → English
+- Slovak → English
+- Spanish → English
+- Swedish → English
+- Thai → English
+- Turkish → English

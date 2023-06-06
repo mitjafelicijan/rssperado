@@ -1,0 +1,17 @@
+[MASTER]
+disable=W0702,W0511,C0209,C0103,C0411,E1136,C0201,C0206,W0621,W0703,W0640,
+
+# W0702 - No exception type(s) specified.
+# W0511 - Used when a warning note as FIXME or XXX is detected.
+# C0209 - Formatting a regular string which could be a f-string.
+# C0103 - Used when the name doesn't conform to naming rules.
+# C0411 - Used when PEP8 import order is not respected.
+# E1136 - Emitted when a subscripted value doesn’t support subscription.
+# C0201 - Consider iterating the dictionary directly instead of calling .keys().
+# C0206 - Consider iterating with .items().
+# W0621 - Redefining name from outer scope.
+# W0703 - Catching too general exception.
+# W0640 - Cell variable defined in loop.
+
+[FORMAT]
+max-line-length=240
