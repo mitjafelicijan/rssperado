@@ -404,6 +404,7 @@ if __name__ == "__main__":
     # Initialize the NLP.
     if ARGS.extract_content:
         nltk.download('punkt')
+        print_divider()
 
     # Read the list of RSS feeds.
     urls = read_urls(args.input_feeds)
