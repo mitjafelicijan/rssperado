@@ -14,7 +14,7 @@ These models can take up a lot of disk space, so be sure to have enough space av
 
 <details>
     <summary>See it in action</summary>
-    ![Screenshot](./screen.png)
+    <img src="./screen.png">
 </details>
 
 ## Features
