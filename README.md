@@ -30,6 +30,7 @@ Each feed gets exported as JSON file where the `md5(feed-url)` is the name of th
 - Translate each story to English
 - Enables NER classification
 - Detects language of the story
+- Allows extraction of content from each story
 
 ## Installation
 
@@ -73,28 +74,30 @@ $ python3 rssperado.py --help
 usage: rssperado.py [-h] --input-feeds INPUT_FEEDS [--output-dir OUTPUT_DIR] [--max-entries MAX_ENTRIES]
                     [--fetch-images | --no-fetch-images] [--og-images | --no-og-images] [--resize | --no-resize]
                     [--image-width IMAGE_WIDTH] [--image-height IMAGE_HEIGHT] [--image-quality IMAGE_QUALITY]
-                    [--translate | --no-translate] [--ner | --no-ner] [--verbose | --no-verbose] [--version]
+                    [--extract-content | --no-extract-content] [--translate | --no-translate] [--ner | --no-ner]
+                    [--verbose | --no-verbose] [--version]
 ```
 
 
 ### Available options
 
-| Option                            | Description                                     |
-| --------------------------------- | ----------------------------------------------- |
-| -h, --help                        | Show this help message and exit                 |
-| --input-feeds INPUT_FEEDS         | Specify input file with the list of RSS feeds   |
-| --output-dir OUTPUT_DIR           | Specify output directory (default: ./output)    |
-| --max-entries MAX_ENTRIES         | Specify max feed entries to parse (default: 50) |
-| --fetch-images, --no-fetch-images | Fetches images from feed                        |
-| --og-images, --no-og-images       | Fetches images from OG meta tags as fallback    |
-| --resize, --no-resize             | Resizes images to specific dimensions           |
-| --image-width IMAGE_WIDTH         | Specify resized image width (default: 800)      |
-| --image-height IMAGE_HEIGHT       | Specify resized image height (default: 600)     |
-| --image-quality IMAGE_QUALITY     | Specify resized image quality (default: 90)     |
-| --translate, --no-translate       | Translate each story to English                 |
-| --ner, --no-ner                   | Enables NER classification                      |
-| --verbose, --no-verbose           | Make the operation more talkative               |
-| --version                         | Show program's version number and exit          |
+| Option                                  | Description                                     |
+| --------------------------------------- | ----------------------------------------------- |
+| -h, --help                              | Show this help message and exit                 |
+| --input-feeds INPUT_FEEDS               | Specify input file with the list of RSS feeds   |
+| --output-dir OUTPUT_DIR                 | Specify output directory (default: ./output)    |
+| --max-entries MAX_ENTRIES               | Specify max feed entries to parse (default: 50) |
+| --fetch-images, --no-fetch-images       | Fetches images from feed                        |
+| --og-images, --no-og-images             | Fetches images from OG meta tags as fallback    |
+| --resize, --no-resize                   | Resizes images to specific dimensions           |
+| --image-width IMAGE_WIDTH               | Specify resized image width (default: 800)      |
+| --image-height IMAGE_HEIGHT             | Specify resized image height (default: 600)     |
+| --image-quality IMAGE_QUALITY           | Specify resized image quality (default: 90)     |
+| --extract-content, --no-extract-content | Extracts content from each story                |
+| --translate, --no-translate             | Translate each story to English                 |
+| --ner, --no-ner                         | Enables NER classification                      |
+| --verbose, --no-verbose                 | Make the operation more talkative               |
+| --version                               | Show program's version number and exit          |
 
 
 ### Example input file

@@ -11,10 +11,12 @@ import feedparser
 import requests
 import concurrent.futures
 import warnings
+import nltk
 
 import numpy as np
 import argostranslate.package
 import argostranslate.translate
+from newspaper import Article
 
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
@@ -169,6 +171,7 @@ def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries:
             "ago": None,
             "dt": None,
         },
+        "content": None,
         "ner": None,
         "image_filename": None,
         "image_url": None,
@@ -301,6 +304,25 @@ def process_feed_entry(entry: object, idx: int, num_of_unprocessed_feed_entries:
             if ARGS.verbose:
                 print("Error extracting NER: {}".format(e))
 
+    # Extracts the actual content of the story.
+    if story["link"] and ARGS.extract_content:
+        try:
+            article = Article(url)
+            article.download()
+            article.parse()
+            article.nlp()
+
+            story["content"] = {
+                "title": article.title,
+                "text": article.text,
+                "keywords": article.keywords,
+                "summary": article.summary,
+                "authors": article.authors,
+            }
+        except Exception as e:
+            if ARGS.verbose:
+                print("Error extracting content: {}".format(e))
+
     return story
 
 
@@ -328,6 +350,7 @@ if __name__ == "__main__":
     parser.add_argument("--image-height", help="specify resized image height (default: 600)", type=int, default=600)
     parser.add_argument("--image-quality", help="specify resized image quality (default: 90)", type=int, default=90)
 
+    parser.add_argument("--extract-content", help="extracts page's actual content", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--translate", help="translate each story to English", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--ner", help="enables NER classification", action=argparse.BooleanOptionalAction, default=False)
 
@@ -377,6 +400,10 @@ if __name__ == "__main__":
             print("  - [{}/{}] {}".format(idx+1, len(language_list), package_to_install))
             argostranslate.package.install_from_path(package_to_install.download())
         print_divider()
+
+    # Initialize the NLP.
+    if ARGS.extract_content:
+        nltk.download('punkt')
 
     # Read the list of RSS feeds.
     urls = read_urls(args.input_feeds)
