@@ -1,10 +1,8 @@
 # rssperado
 
+<img src="https://github.com/mitjafelicijan/rssperado/assets/296714/dbbedb38-170b-4809-bbe0-90e599fcd3f4" height="120">
+
 ![Despedado](./media/despedado.gif)
-
-<img src="https://www.svgrepo.com/download/401332/construction.svg" height="40" style="float:left;padding-right:10px;">
-
-**This project is under active development and still considered work in progress. It is not yet ready for production use. Use at your own risk.**
 
 The RSS parser is a command-line utility that simplifies the process of parsing RSS feeds, enriching the extracted data, exporting it to JSON files, enabling content classification, and providing English translation.
 
