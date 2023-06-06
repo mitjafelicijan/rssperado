@@ -14,7 +14,7 @@ Requirements:
 - virtualenv
 
 ```sh
-[sudo] apt install build-essential python3 python3-venv python3-pip
+$ [sudo] apt install build-essential python3 python3-venv python3-pip
 ```
 
 And now the actual installation:
