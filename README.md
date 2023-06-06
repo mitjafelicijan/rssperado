@@ -1,6 +1,6 @@
 # rssperado
 
-<img src="https://github.com/mitjafelicijan/rssperado/assets/296714/dbbedb38-170b-4809-bbe0-90e599fcd3f4" height="120">
+<img src="https://github.com/mitjafelicijan/rssperado/assets/296714/dbbedb38-170b-4809-bbe0-90e599fcd3f4" height="100" style="margin-bottom:20px;>
 
 ![Despedado](./media/despedado.gif)
 
