@@ -1,6 +1,6 @@
 # rssperado
 
-<img src="https://github.com/mitjafelicijan/rssperado/assets/296714/dbbedb38-170b-4809-bbe0-90e599fcd3f4" height="100" style="margin-bottom:20px;">
+**This project is under active development and still considered work in progress.** It is not yet ready for production use. Use at your own risk.
 
 ![Despedado](./media/despedado.gif)
 
